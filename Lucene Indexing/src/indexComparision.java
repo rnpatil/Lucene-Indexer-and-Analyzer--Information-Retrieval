@@ -22,8 +22,10 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.MultiFields;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.index.Terms;
+import org.apache.lucene.index.TermsEnum;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 
 public class indexComparision {
@@ -35,9 +37,9 @@ public class indexComparision {
 	// main method where the object for the generateIndex class is instantiated
 	public static void main(String[] args) throws Exception {
 
-		
+
 		// Please change all the directory paths to your local directory path before executing.
-		
+
 		// this is the directory path to the corpus
 		File dataDirectory = new File("C:\\Users\\Rohit\\Documents\\Search\\Data\\corpus\\corpus\\");
 
@@ -49,7 +51,7 @@ public class indexComparision {
 		int task = reader.nextInt();
 		reader.close();
 		Analyzer analyzer= null;
-		
+
 		// this object will call the index method to generate the indexing
 		indexComparision indexObj = new indexComparision();
 
@@ -173,10 +175,32 @@ public class indexComparision {
 		System.out.println("Size of the vocabulary for this field: "+vocabulary.size());
 
 
+		/**
+		 * Check if TEXT field has terms like "very","happy" and are they stemmed to "veri" and "happi"
+		 * 
+		 * 
+		 */
+		//Print the vocabulary for <field>TEXT</field>
+		TermsEnum iterator = vocabulary.iterator();
+		BytesRef byteRef = null;
+		System.out.println("\n*******Vocabulary-Start**********");
+		while((byteRef = iterator.next()) != null) {
+			String term = byteRef.utf8ToString();
+
+			if(term.equals("veri")||term.equals("very")||term.equals("happy")||term.equals("happi"))
+				System.out.print(term+"\t");
+		}
+		System.out.println("\n*******Vocabulary-End**********");
+
+		/**
+		 * 
+		 * Oberservation : No stemming applied for any for the 4 analyzers
+		 */
 		reader.close();
 
+
 	}
-	
+
 	/**
 	 * 
 	 * @param writer
