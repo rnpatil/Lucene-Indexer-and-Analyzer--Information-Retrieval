@@ -46,7 +46,7 @@ public class indexComparision {
 		Scanner reader = new Scanner(System.in); 
 		System.out.println("Index Comparision : ");
 		System.out.println("Select amongst the following Anayzers : ");
-		System.out.println(" 1: KeywordAnalyzer \n 2: SimpleAnalyzer \n 3: StopAnalyzer \n 4: StandardAnalyzer ");
+		System.out.println(" 1: Keyword Analyzer \n 2: Simple Analyzer \n 3: Stop Analyzer \n 4: Standard Analyzer ");
 
 		int task = reader.nextInt();
 		reader.close();
@@ -176,7 +176,7 @@ public class indexComparision {
 
 
 		/**
-		 * Check if TEXT field has terms like "very","happy" and are they stemmed to "veri" and "happi"
+		 * Check if TEXT field has terms like "very","happy" and are they STEMMED to "veri" and "happi"??
 		 * 
 		 * 
 		 */
@@ -194,7 +194,7 @@ public class indexComparision {
 
 		/**
 		 * 
-		 * Oberservation : No stemming applied for any for the 4 analyzers
+		 * Oberservation : No stemming applied for any of  the 4 analyzers
 		 */
 		reader.close();
 
